@@ -40,7 +40,7 @@
         HorizontalContentAlignment="Center"
         VerticalContentAlignment="Center"
         PlaceholderText="Achievements Link"
-        Text="{Binding AchievementsUrl}" />
+        Text="{Binding SteamAppId}" />
     </Grid>
 
     <ListBox Grid.Row="2" />

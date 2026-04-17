@@ -8,6 +8,7 @@ using Microsoft.VisualBasic;
 using System.Net.Http;
 using System.Text.Json;
 
+
 namespace Achievement_Hunter.Classes;
 
 public class Game : BaseObject
@@ -16,7 +17,6 @@ public class Game : BaseObject
     public string name { get; set; }
 
     public string steamAppId { get; set; }
-
 
     private List<Achievement> achievements = new List<Achievement>();
     public List<Achievement> Achievements
@@ -30,33 +30,29 @@ public class Game : BaseObject
     {
         this.name = name;
         this.steamAppId = steamAppId;
-
-
     }
+
+
 
     public async Task InitializeAsync()
     {
 
-        string url = $"https://api.steampowered.com/ISteamUserStats/GetSchemaForGame/v2/?key={apiKey}&appid={appId}";
+        string proxyUrl = $"https://steam-api-xt6g.onrender.com/achievements/{steamAppId}";
 
         using HttpClient client = new HttpClient();
-        var response = await client.GetStringAsync(url);
+        var response = await client.GetStringAsync(proxyUrl);
 
-        // Parse the JSON response
-        using JsonDocument doc = JsonDocument.Parse(response);
-        var achievementsJson = doc.RootElement
-            .GetProperty("game")
-            .GetProperty("availableGameStats")
-            .GetProperty("achievements");
+
+        var achievementsJson = JsonSerializer.Deserialize<List<Achievement>>(response, new JsonSerializerOptions
+        {
+            PropertyNameCaseInsensitive = true
+        });
 
         achievements.Clear();
-
-        foreach (var item in achievementsJson.EnumerateArray())
-        {
-            achievements.Add(new Achievement(item.GetProperty("displayName").GetString(), item.GetProperty("description").GetString()));
-        }
-
+        achievements.AddRange(achievementsJson);
     }
+
+
 
 
 }

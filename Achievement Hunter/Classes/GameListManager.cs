@@ -17,7 +17,7 @@ static class GameListManager
 
     public static async Task AddGameToList(Game game)
     {
-        if (!listOfGames.Any(listGame => listGame.Name == game.Name || listGame.AchievementsUrl == game.AchievementsUrl))
+        if (!listOfGames.Any(listGame => listGame.name == game.name || listGame.steamAppId == game.steamAppId))
         {
             listOfGames.Add(game);
             await UpdateJson();

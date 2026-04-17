@@ -1,20 +1,17 @@
+using System.Text.Json.Serialization;
+
 public class Achievement
 {
-    private string _achievementName;
-    public string AchievementName
-    {
-        get { return _achievementName; }
-    }
-    private string _achievementDescription;
-    public string AchievementDescription
-    {
-        get { return _achievementDescription; }
-    }
+    [JsonPropertyName("displayName")]
+    public string AchievementName { get; set; }
+
+    [JsonPropertyName("description")]
+    public string AchievementDescription { get; set; }
 
 
     public Achievement(string achievementName, string achievementDescription)
     {
-        this._achievementName = achievementName;
-        this._achievementDescription = achievementDescription;
+        this.AchievementName = achievementName;
+        this.AchievementDescription = achievementDescription;
     }
 }

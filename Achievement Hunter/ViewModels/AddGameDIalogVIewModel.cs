@@ -11,13 +11,13 @@ public partial class AddGameDialogViewModel : ViewModelBase
 {
     private readonly Window _dialog;
     [ObservableProperty] private string _gameName;
-    [ObservableProperty] private string _achievementsUrl;
+    [ObservableProperty] private string _steamAppId;
     public AddGameDialogViewModel(Window dialog, string gameName)
     {
         _gameName = gameName;
 
         _dialog = dialog;
-        _achievementsUrl = "";
+        _steamAppId = "";
     }
 
     [RelayCommand]
@@ -30,7 +30,7 @@ public partial class AddGameDialogViewModel : ViewModelBase
     [RelayCommand]
     public async Task Add()
     {
-        Game addedGame = new Game(GameName, AchievementsUrl);
+        Game addedGame = new Game(GameName, SteamAppId);
 
         await addedGame.InitializeAsync();
 
