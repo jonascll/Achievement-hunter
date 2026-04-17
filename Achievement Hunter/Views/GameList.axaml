@@ -1,8 +1,48 @@
-<UserControl xmlns="https://github.com/avaloniaui" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:PlusIcon="../Assets/avalonia-logo.ico" xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:vm="using:Achievement_Hunter.ViewModels" mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450" x:Class="Achievement_Hunter.Views.GameList" x:DataType="vm:GameListViewModel">
+<UserControl
+    x:Class="Achievement_Hunter.Views.GameList"
+    xmlns="https://github.com/avaloniaui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:PlusIcon="../Assets/avalonia-logo.ico"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:vm="using:Achievement_Hunter.ViewModels"
+    x:DataType="vm:GameListViewModel"
+    mc:Ignorable="d">
+    <UserControl.Styles>
+
+        <Style Selector="Image.hoverImagePlus">
+            <Setter Property="Source" Value="avares://Achievement_Hunter/Assets/plus.png" />
+        </Style>
+        <Style Selector="Image.hoverImagePlus:pointerover">
+            <Setter Property="Source" Value="avares://Achievement_Hunter/Assets/plus-hover.png" />
+            <Setter Property="Cursor" Value="Hand" />
+        </Style>
+    </UserControl.Styles>
     <Grid Margin="10" RowDefinitions="Auto, *">
         <Grid Grid.Row="0" ColumnDefinitions="*, Auto">
-            <TextBox HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Grid.Column="0" PlaceholderText="Name of game" HorizontalAlignment="Stretch"></TextBox>
-            <Image Width="40" Grid.Column="1" Source="../Assets/avalonia-logo.ico"></Image>
+
+            <TextBox
+                Grid.Column="0"
+                HorizontalAlignment="Stretch"
+                HorizontalContentAlignment="Center"
+                VerticalContentAlignment="Center"
+                PlaceholderText="Name of game"
+                Text="{Binding GameName}" />
+
+
+
+
+            <Image
+                Grid.Column="1"
+                Width="40"
+                Margin="5,0,0,0"
+                Classes="hoverImagePlus"
+                PointerPressed="AddNewGame" />
+
+
+
+
+
         </Grid>
         <ListBox Grid.Row="1" Margin="0,10,0,0" />
     </Grid>

@@ -1,22 +1,25 @@
-<Window xmlns="https://github.com/avaloniaui"
-        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        xmlns:vm="using:Achievement_Hunter.ViewModels"
-        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-        xmlns:views="using:Achievement_Hunter.Views"
-        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
-        x:Class="Achievement_Hunter.Views.MainWindow"
-        x:DataType="vm:MainWindowViewModel"
-        Icon="/Assets/avalonia-logo.ico"
-        Title="Achievement_Hunter">
+<Window
+    x:Class="Achievement_Hunter.Views.MainWindow"
+    xmlns="https://github.com/avaloniaui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:views="using:Achievement_Hunter.Views"
+    xmlns:vm="using:Achievement_Hunter.ViewModels"
+    Title="Achievement_Hunter"
+    d:DesignHeight="450"
+    d:DesignWidth="800"
+    x:DataType="vm:MainWindowViewModel"
+    Icon="/Assets/avalonia-logo.ico"
+    mc:Ignorable="d">
     <Window.DataTemplates>
         <DataTemplate DataType="{x:Type vm:GameListViewModel}">
-            <views:GameList></views:GameList>
+            <views:GameList />
         </DataTemplate>
     </Window.DataTemplates>
     <Design.DataContext>
-        <vm:MainWindowViewModel/>
+        <vm:MainWindowViewModel />
     </Design.DataContext>
 
-    <ContentControl Content="{Binding CurrentPage}"/>
+    <ContentControl Content="{Binding CurrentPage}" />
 </Window>
