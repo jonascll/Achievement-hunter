@@ -40,7 +40,7 @@
                 PointerPressed="AddNewGame" />
 
 
-
+            <!--  TODO: add remove button to items in list  -->
 
 
         </Grid>
