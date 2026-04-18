@@ -7,6 +7,7 @@ using AngleSharp.Dom;
 using Microsoft.VisualBasic;
 using System.Net.Http;
 using System.Text.Json;
+using AngleSharp.Dom.Events;
 
 
 namespace Achievement_Hunter.Classes;
@@ -34,22 +35,30 @@ public class Game : BaseObject
 
 
 
-    public async Task InitializeAsync()
+    public async Task<string> InitializeAsync()
     {
-
-        string proxyUrl = $"https://steam-api-xt6g.onrender.com/achievements/{steamAppId}";
-
-        using HttpClient client = new HttpClient();
-        var response = await client.GetStringAsync(proxyUrl);
-
-
-        var achievementsJson = JsonSerializer.Deserialize<List<Achievement>>(response, new JsonSerializerOptions
+        try
         {
-            PropertyNameCaseInsensitive = true
-        });
+            string proxyUrl = $"https://steam-api-xt6g.onrender.com/achievements/{steamAppId}";
 
-        achievements.Clear();
-        achievements.AddRange(achievementsJson);
+            using HttpClient client = new HttpClient();
+            var response = await client.GetStringAsync(proxyUrl);
+
+
+            var achievementsJson = JsonSerializer.Deserialize<List<Achievement>>(response, new JsonSerializerOptions
+            {
+                PropertyNameCaseInsensitive = true
+            });
+
+            achievements.Clear();
+            achievements.AddRange(achievementsJson);
+            return "";
+        }
+        catch (HttpRequestException error)
+        {
+            return error.Message;
+        }
+
     }
 
 

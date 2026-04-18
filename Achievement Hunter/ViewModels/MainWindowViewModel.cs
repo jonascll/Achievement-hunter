@@ -1,4 +1,5 @@
-﻿using Avalonia;
+﻿using Achievement_Hunter.Classes;
+using Avalonia;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 
@@ -10,7 +11,8 @@ public partial class MainWindowViewModel : ViewModelBase
 
     public MainWindowViewModel()
     {
-        _currentPage = new GameListViewModel();
+        GameListManager.LoadJson();
+        _currentPage = new GameListViewModel(GameListManager.listOfGames);
     }
 
 

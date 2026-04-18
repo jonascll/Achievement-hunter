@@ -32,11 +32,15 @@ public partial class AddGameDialogViewModel : ViewModelBase
     {
         Game addedGame = new Game(GameName, SteamAppId);
 
-        await addedGame.InitializeAsync();
+        string errorMessage = await addedGame.InitializeAsync();
 
+        if (errorMessage != "")
+        {
+            _dialog.Close(new GameDialogResponse(false, addedGame, errorMessage));
+            return;
+        }
+        bool successAdding = await GameListManager.AddGameToList(addedGame);
 
-        await GameListManager.AddGameToList(addedGame);
-
-        _dialog.Close(new GameDialogResponse(true, addedGame));
+        _dialog.Close(new GameDialogResponse(successAdding, addedGame, successAdding ? string.Empty : "Game is already in your list or you have a game with the same name"));
     }
 }

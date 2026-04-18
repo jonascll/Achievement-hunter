@@ -5,13 +5,14 @@
   xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
   xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
   xmlns:vm="using:Achievement_Hunter.ViewModels"
+  Title="Add Game"
   Width="700"
-  Height="600"
+  Height="180"
   x:DataType="vm:AddGameDialogViewModel"
   CanResize="False"
   mc:Ignorable="d">
 
-  <Grid Margin="10" RowDefinitions="Auto, Auto, *, Auto">
+  <Grid Margin="10" RowDefinitions="Auto, *">
     <Grid
       Grid.Row="0"
       Margin="10"
@@ -21,6 +22,7 @@
         Grid.Column="1"
         Width="350"
         HorizontalAlignment="Stretch"
+        VerticalAlignment="Center"
         HorizontalContentAlignment="Center"
         VerticalContentAlignment="Center"
         PlaceholderText="Game Name"
@@ -32,21 +34,20 @@
       Margin="10"
       VerticalAlignment="Top"
       ColumnDefinitions="*, *">
-      <TextBlock Grid.Column="0">Url for achievement (fandom wiki link):</TextBlock>
+      <TextBlock Grid.Column="0">Steam app ID:</TextBlock>
       <TextBox
         Grid.Column="1"
         Width="350"
         HorizontalAlignment="Stretch"
+        VerticalAlignment="Center"
         HorizontalContentAlignment="Center"
         VerticalContentAlignment="Center"
-        PlaceholderText="Achievements Link"
+        PlaceholderText="Steam app ID"
         Text="{Binding SteamAppId}" />
     </Grid>
 
-    <ListBox Grid.Row="2" />
-
     <Grid
-      Grid.Row="3"
+      Grid.Row="2"
       Margin="10"
       HorizontalAlignment="Center"
       VerticalAlignment="Bottom"

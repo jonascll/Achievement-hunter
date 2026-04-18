@@ -1,13 +1,12 @@
-using Achievement_Hunter.ViewModels;
 using Avalonia;
 using Avalonia.Controls;
 using Avalonia.Markup.Xaml;
 
 namespace Achievement_Hunter.Views;
 
-public partial class AddGameDialog : Window
+public partial class WarningDialog : Window
 {
-    public AddGameDialog()
+    public WarningDialog()
     {
         InitializeComponent();
     }

@@ -65,7 +65,6 @@ Classes/
  Game.cs
  GameDialogResponse.cs
  GameListManager.cs
- SupportedGamesManager.cs
 obj/Debug/net10.0/
  .NETCoreApp,Version=v10.0.AssemblyAttributes.cs
  Achievement Hunter.AssemblyInfo.cs
@@ -76,10 +75,12 @@ ViewModels/
  GameListViewModel.cs
  MainWindowViewModel.cs
  ViewModelBase.cs
+ WarningDialogViewModel.cs
 Views/
  AddGameDialog.axaml.cs
  GameList.axaml.cs
  MainWindow.axaml.cs
+ WarningDialog.axaml.cs
 
 [metadataReferences]
 <DOTNET>/packs/Microsoft.NETCore.App.Ref/10.0.5/ref/net10.0/
@@ -320,3 +321,4 @@ Views/
  AddGameDialog.axaml
  GameList.axaml
  MainWindow.axaml
+ WarningDialog.axaml

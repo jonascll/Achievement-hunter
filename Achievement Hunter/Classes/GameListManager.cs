@@ -15,13 +15,17 @@ static class GameListManager
 
 
 
-    public static async Task AddGameToList(Game game)
+    public static async Task<bool> AddGameToList(Game game)
     {
         if (!listOfGames.Any(listGame => listGame.name == game.name || listGame.steamAppId == game.steamAppId))
         {
+
             listOfGames.Add(game);
             await UpdateJson();
+            return true;
         }
+        return false;
+
     }
 
     async private static Task UpdateJson()
@@ -33,4 +37,26 @@ static class GameListManager
         File.WriteAllText(GamesJsonPath, jsonString);
     }
 
+    public static void LoadJson()
+    {
+        if (!File.Exists(GamesJsonPath))
+        {
+            listOfGames = new List<Game>();
+            return;
+        }
+
+        try
+        {
+            string jsonString = File.ReadAllText(GamesJsonPath);
+
+            listOfGames = JsonSerializer.Deserialize<List<Game>>(jsonString) ?? new List<Game>();
+        }
+        catch (Exception ex)
+        {
+
+            Console.WriteLine($"Failed to load games: {ex.Message}");
+            listOfGames = new List<Game>();
+        }
+    }
 }
+
