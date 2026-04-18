@@ -46,18 +46,17 @@
         </Grid>
         <ListBox
             Grid.Row="1"
-            Margin="0,10,0,0"
+            DoubleTapped="GameDoubleTapped"
             ItemsSource="{Binding FilteredGames}"
-            ScrollViewer.VerticalScrollBarVisibility="Auto">
-            <ListBox.ItemsPanel>
-                <ItemsPanelTemplate>
-                    <StackPanel />
-                </ItemsPanelTemplate>
+            ScrollViewer.VerticalScrollBarVisibility="Auto"
+            SelectedItem="{Binding SelectedGame}">
 
-            </ListBox.ItemsPanel>
             <ListBox.ItemTemplate>
                 <DataTemplate>
-                    <TextBlock HorizontalAlignment="Center" Text="{Binding name}" />
+                    <StackPanel>
+                        <TextBlock HorizontalAlignment="Center" Text="{Binding name}" />
+                    </StackPanel>
+
                 </DataTemplate>
             </ListBox.ItemTemplate>
         </ListBox>

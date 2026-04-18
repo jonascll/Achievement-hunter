@@ -12,10 +12,13 @@ public partial class MainWindowViewModel : ViewModelBase
     public MainWindowViewModel()
     {
         GameListManager.LoadJson();
-        _currentPage = new GameListViewModel(GameListManager.listOfGames);
+        _currentPage = new GameListViewModel(GameListManager.listOfGames, NavigateToGameAchievements);
     }
 
 
 
-
+    public void NavigateToGameAchievements(Game selectedGame)
+    {
+        CurrentPage = new GameAchievementListViewModel(selectedGame);
+    }
 }

@@ -1,0 +1,24 @@
+<UserControl
+  x:Class="Achievement_Hunter.Views.GameAchievementsList"
+  xmlns="https://github.com/avaloniaui"
+  xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+  xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+  xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+  xmlns:vm="using:Achievement_Hunter.ViewModels"
+  d:DesignHeight="450"
+  d:DesignWidth="800"
+  x:DataType="vm:GameAchievementListViewModel"
+  mc:Ignorable="d">
+  <!--  TODO: clean up look (maybe add % completed) add checkbox and title of game on top, and back button to go back to gamelist  -->
+  <ListBox ItemsSource="{Binding Achievements}" ScrollViewer.VerticalScrollBarVisibility="Auto">
+
+    <ListBox.ItemTemplate>
+      <DataTemplate>
+        <StackPanel>
+          <TextBlock HorizontalAlignment="Center" Text="{Binding AchievementName}" />
+        </StackPanel>
+
+      </DataTemplate>
+    </ListBox.ItemTemplate>
+  </ListBox>
+</UserControl>

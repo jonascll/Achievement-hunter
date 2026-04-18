@@ -72,12 +72,14 @@ Program.cs
 ViewLocator.cs
 ViewModels/
  AddGameDIalogVIewModel.cs
+ GameAchievementsListViewModel.cs
  GameListViewModel.cs
  MainWindowViewModel.cs
  ViewModelBase.cs
  WarningDialogViewModel.cs
 Views/
  AddGameDialog.axaml.cs
+ GameAchievementsList.axaml.cs
  GameList.axaml.cs
  MainWindow.axaml.cs
  WarningDialog.axaml.cs
@@ -266,6 +268,13 @@ Views/
   Avalonia.Win32.Automation.dll
   Avalonia.Win32.dll
  avalonia.x11/12.0.1/lib/net10.0/Avalonia.X11.dll
+ avalonia.xaml.interactions.custom/11.3.0.6/lib/net8.0/Avalonia.Xaml.Interactions.Custom.dll
+ avalonia.xaml.interactions.draganddrop/11.3.0.6/lib/net8.0/Avalonia.Xaml.Interactions.DragAndDrop.dll
+ avalonia.xaml.interactions.draggable/11.3.0.6/lib/net8.0/Avalonia.Xaml.Interactions.Draggable.dll
+ avalonia.xaml.interactions.events/11.3.0.6/lib/net8.0/Avalonia.Xaml.Interactions.Events.dll
+ avalonia.xaml.interactions.responsive/11.3.0.6/lib/net8.0/Avalonia.Xaml.Interactions.Responsive.dll
+ avalonia.xaml.interactions/11.3.0.6/lib/net8.0/Avalonia.Xaml.Interactions.dll
+ avalonia.xaml.interactivity/11.3.0.6/lib/net8.0/Avalonia.Xaml.Interactivity.dll
  avalonia/12.0.1/ref/net10.0/
   Avalonia.Base.dll
   Avalonia.Controls.dll
@@ -319,6 +328,7 @@ obj/Debug/net10.0/Achievement Hunter.GeneratedMSBuildEditorConfig.editorconfig
 App.axaml
 Views/
  AddGameDialog.axaml
+ GameAchievementsList.axaml
  GameList.axaml
  MainWindow.axaml
  WarningDialog.axaml

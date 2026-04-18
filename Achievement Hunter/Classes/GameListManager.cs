@@ -37,6 +37,8 @@ static class GameListManager
         File.WriteAllText(GamesJsonPath, jsonString);
     }
 
+
+
     public static void LoadJson()
     {
         if (!File.Exists(GamesJsonPath))

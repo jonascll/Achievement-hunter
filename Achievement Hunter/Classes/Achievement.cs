@@ -10,10 +10,13 @@ public class Achievement
 
     [JsonPropertyName("icon")]
     public string IconUrl { get; set; }
+
+    public bool completed { get; set; }
     public Achievement(string achievementName, string achievementDescription, string iconUrl)
     {
         this.AchievementName = achievementName;
         this.AchievementDescription = achievementDescription;
         this.IconUrl = iconUrl;
+        this.completed = false;
     }
 }

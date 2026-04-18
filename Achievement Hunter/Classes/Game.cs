@@ -23,6 +23,7 @@ public class Game : BaseObject
     public List<Achievement> Achievements
     {
         get { return achievements; }
+        set { achievements = value; }
     }
 
 

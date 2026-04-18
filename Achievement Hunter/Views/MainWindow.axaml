@@ -13,6 +13,10 @@
     Icon="/Assets/avalonia-logo.ico"
     mc:Ignorable="d">
     <Window.DataTemplates>
+        <DataTemplate DataType="{x:Type vm:GameAchievementListViewModel}">
+            <views:GameAchievementsList />
+        </DataTemplate>
+
         <DataTemplate DataType="{x:Type vm:GameListViewModel}">
             <views:GameList />
         </DataTemplate>

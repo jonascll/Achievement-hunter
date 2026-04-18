@@ -6,6 +6,7 @@ using Avalonia;
 using Avalonia.Controls;
 using Avalonia.Input;
 using Avalonia.Markup.Xaml;
+using Avalonia.VisualTree;
 
 
 
@@ -13,7 +14,6 @@ namespace Achievement_Hunter.Views;
 
 public partial class GameList : UserControl
 {
-
 
     public GameList()
     {
@@ -23,11 +23,12 @@ public partial class GameList : UserControl
     async public void AddNewGame(object? sender, PointerPressedEventArgs e)
     {
         string currentText = "";
-        GameListViewModel gmlvm = null;
+        GameListViewModel glvm = null;
         if (DataContext is GameListViewModel viewModel)
         {
-            gmlvm = viewModel;
+            glvm = viewModel;
             currentText = viewModel.GameName;
+
         }
         var dialog = new AddGameDialog();
         var vm = new AddGameDialogViewModel(dialog, currentText);
@@ -39,18 +40,14 @@ public partial class GameList : UserControl
             if (topLevel is Window window)
             {
                 GameDialogResponse? result = await dialog.ShowDialog<GameDialogResponse?>(window);
+                if (glvm != null)
+                {
+                    glvm.GameName = "";
+                    glvm.FilterList("");
+                }
+
                 if (result != null)
                 {
-                    if (result?.ResponseObject is Game gameObject && result.Succeeded)
-                    {
-                        if (gmlvm != null)
-                        {
-                            gmlvm.Games.Add(gameObject);
-                        }
-
-
-                    }
-
                     if (!result.Succeeded)
                     {
 
@@ -60,18 +57,17 @@ public partial class GameList : UserControl
                         await warningDialog.ShowDialog(window);
                     }
                 }
-                else
-                {
-
-                    var warningDialog = new WarningDialog();
-                    var warningVm = new WarningDialogViewModel(warningDialog, "Something went terribly wrong");
-                    warningDialog.DataContext = warningVm;
-                    await warningDialog.ShowDialog(window);
-                }
-
-
             }
 
+        }
+    }
+
+    private void GameDoubleTapped(object? sender, TappedEventArgs args)
+    {
+        if (DataContext is GameListViewModel viewModel)
+        {
+
+            viewModel.RequestNavigation();
         }
     }
 
