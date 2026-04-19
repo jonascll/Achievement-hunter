@@ -17,7 +17,7 @@ static class GameListManager
 
     public static async Task<bool> AddGameToList(Game game)
     {
-        if (!listOfGames.Any(listGame => listGame.name == game.name || listGame.steamAppId == game.steamAppId))
+        if (!CheckIfGameAlreadyInList(game))
         {
 
             listOfGames.Add(game);
@@ -25,6 +25,20 @@ static class GameListManager
             return true;
         }
         return false;
+
+    }
+
+    public static async Task<bool> NotifyGameChanged()
+    {
+        try
+        {
+            await UpdateJson();
+            return true;
+        }
+        catch (Exception e)
+        {
+            return false;
+        }
 
     }
 
@@ -59,6 +73,29 @@ static class GameListManager
             Console.WriteLine($"Failed to load games: {ex.Message}");
             listOfGames = new List<Game>();
         }
+    }
+
+    public static bool CheckIfGameAlreadyInList(Game game)
+    {
+        return listOfGames.Any(listGame => listGame.name == game.name);
+    }
+
+    public static Game CheckForCopyableAchievementData(Game game)
+    {
+        Game? copyGame = null;
+        if (listOfGames.Any(listGame => listGame.steamAppId == game.steamAppId))
+        {
+            copyGame = listOfGames.Find(g => g.steamAppId == game.steamAppId);
+            if (copyGame != null)
+            {
+                foreach (Achievement achievement in copyGame.Achievements)
+                {
+                    game.Achievements.Add(new Achievement(achievement.AchievementName, achievement.AchievementDescription, achievement.IconUrl));
+                }
+            }
+
+        }
+        return copyGame;
     }
 }
 

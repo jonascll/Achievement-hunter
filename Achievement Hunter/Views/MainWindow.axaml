@@ -6,11 +6,14 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:views="using:Achievement_Hunter.Views"
     xmlns:vm="using:Achievement_Hunter.ViewModels"
-    Title="Achievement_Hunter"
+    Title="Achievement Hunter"
+    Width="{Binding WindowWidth}"
+    Height="{Binding WindowHeight}"
     d:DesignHeight="450"
     d:DesignWidth="800"
     x:DataType="vm:MainWindowViewModel"
-    Icon="/Assets/avalonia-logo.ico"
+    CanResize="{Binding CanResize}"
+    Icon="/Assets/Achievement_Hunter.ico"
     mc:Ignorable="d">
     <Window.DataTemplates>
         <DataTemplate DataType="{x:Type vm:GameAchievementListViewModel}">

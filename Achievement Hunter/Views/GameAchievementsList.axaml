@@ -2,6 +2,7 @@
   x:Class="Achievement_Hunter.Views.GameAchievementsList"
   xmlns="https://github.com/avaloniaui"
   xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+  xmlns:async="using:AsyncImageLoader"
   xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
   xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
   xmlns:vm="using:Achievement_Hunter.ViewModels"
@@ -9,16 +10,79 @@
   d:DesignWidth="800"
   x:DataType="vm:GameAchievementListViewModel"
   mc:Ignorable="d">
+
+  <UserControl.Styles>
+
+    <Style Selector="Image.hoverImageBack">
+      <Setter Property="Source" Value="avares://Achievement_Hunter/Assets/back.png" />
+    </Style>
+    <Style Selector="Image.hoverImageBack:pointerover">
+      <Setter Property="Source" Value="avares://Achievement_Hunter/Assets/back-hover.png" />
+      <Setter Property="Cursor" Value="Hand" />
+    </Style>
+  </UserControl.Styles>
+  <Grid Margin="10" RowDefinitions="Auto, *">
+    <Grid Grid.Row="0" ColumnDefinitions="Auto, *">
+      <Image
+        Grid.Column="0"
+        Width="40"
+        Height="40"
+        Margin="0,0,10,0"
+        Classes="hoverImageBack"
+        PointerPressed="NavigateBackToGameList" />
+      <TextBox
+        Grid.Column="1"
+        HorizontalContentAlignment="Center"
+        VerticalContentAlignment="Center"
+        PlaceholderText="Search achievements..."
+        Text="{Binding SearchText}"
+        TextAlignment="Center" />
+    </Grid>
+
+    <ListBox
+      Grid.Row="1"
+      Margin="0,10,0,0"
+      ItemsSource="{Binding FilteredAchievements}"
+      ScrollViewer.VerticalScrollBarVisibility="Auto">
+      <ListBox.ItemTemplate>
+        <DataTemplate>
+          <Grid HorizontalAlignment="Left" ColumnDefinitions="250, 320, *">
+
+            <StackPanel
+              Grid.Column="0"
+              Orientation="Horizontal"
+              Spacing="10">
+              <TextBlock
+                Width="120"
+                VerticalAlignment="Center"
+                Text="{Binding CheckboxText}" />
+              <CheckBox
+                VerticalAlignment="Center"
+                Command="{Binding NotifyGameChanged}"
+                IsChecked="{Binding Completed}" />
+            </StackPanel>
+
+            <TextBlock
+              Grid.Column="1"
+              VerticalAlignment="Center"
+              Text="{Binding AchievementName}"
+              TextWrapping="Wrap" />
+            <async:AdvancedImage
+              Grid.Column="2"
+              Width="40"
+              Height="40"
+              HorizontalAlignment="Right"
+              VerticalAlignment="Center"
+              Source="{Binding IconUrl}" />
+          </Grid>
+        </DataTemplate>
+      </ListBox.ItemTemplate>
+    </ListBox>
+  </Grid>
+
+
+
+
   <!--  TODO: clean up look (maybe add % completed) add checkbox and title of game on top, and back button to go back to gamelist  -->
-  <ListBox ItemsSource="{Binding Achievements}" ScrollViewer.VerticalScrollBarVisibility="Auto">
 
-    <ListBox.ItemTemplate>
-      <DataTemplate>
-        <StackPanel>
-          <TextBlock HorizontalAlignment="Center" Text="{Binding AchievementName}" />
-        </StackPanel>
-
-      </DataTemplate>
-    </ListBox.ItemTemplate>
-  </ListBox>
 </UserControl>

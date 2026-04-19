@@ -40,20 +40,38 @@ public class Game : BaseObject
     {
         try
         {
-            string proxyUrl = $"https://steam-api-xt6g.onrender.com/achievements/{steamAppId}";
-
-            using HttpClient client = new HttpClient();
-            var response = await client.GetStringAsync(proxyUrl);
-
-
-            var achievementsJson = JsonSerializer.Deserialize<List<Achievement>>(response, new JsonSerializerOptions
+            if (!GameListManager.CheckIfGameAlreadyInList(this))
             {
-                PropertyNameCaseInsensitive = true
-            });
+                Game copyGame = GameListManager.CheckForCopyableAchievementData(this);
+                if (copyGame != null)
+                {
 
-            achievements.Clear();
-            achievements.AddRange(achievementsJson);
-            return "";
+                    return "";
+                }
+                else
+                {
+
+                    string proxyUrl = $"https://steam-api-xt6g.onrender.com/achievements/{steamAppId}";
+
+                    using HttpClient client = new HttpClient();
+                    var response = await client.GetStringAsync(proxyUrl);
+
+
+                    var achievementsJson = JsonSerializer.Deserialize<List<Achievement>>(response, new JsonSerializerOptions
+                    {
+                        PropertyNameCaseInsensitive = true
+                    });
+
+                    achievements.Clear();
+                    achievements.AddRange(achievementsJson);
+                    return "";
+                }
+
+            }
+            else
+            {
+                return "Game already in list";
+            }
         }
         catch (HttpRequestException error)
         {

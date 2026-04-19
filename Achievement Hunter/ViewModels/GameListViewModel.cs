@@ -14,6 +14,7 @@ public partial class GameListViewModel : ViewModelBase
 {
     [ObservableProperty] private string _gameName = "";
     [ObservableProperty] private Game? _selectedGame;
+
     private readonly Action<Game> _onGameSelected;
     public ObservableCollection<Game> FilteredGames { get; } = new ObservableCollection<Game>();
     public List<Game> Games;
@@ -25,7 +26,7 @@ public partial class GameListViewModel : ViewModelBase
         FilterList(GameName);
     }
 
-    partial void OnGameNameChanged(string? value)
+    partial void OnGameNameChanged(string value)
     {
         FilterList(value);
     }
@@ -46,6 +47,7 @@ public partial class GameListViewModel : ViewModelBase
         if (SelectedGame != null)
         {
             _onGameSelected?.Invoke(SelectedGame);
+
         }
     }
 

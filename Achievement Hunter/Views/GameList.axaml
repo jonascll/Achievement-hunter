@@ -2,7 +2,6 @@
     x:Class="Achievement_Hunter.Views.GameList"
     xmlns="https://github.com/avaloniaui"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-    xmlns:PlusIcon="../Assets/avalonia-logo.ico"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:vm="using:Achievement_Hunter.ViewModels"
@@ -26,8 +25,9 @@
                 HorizontalAlignment="Stretch"
                 HorizontalContentAlignment="Center"
                 VerticalContentAlignment="Center"
-                PlaceholderText="Name of game"
-                Text="{Binding GameName}" />
+                PlaceholderText="Search Game..."
+                Text="{Binding GameName}"
+                TextAlignment="Center" />
 
 
 
@@ -35,6 +35,7 @@
             <Image
                 Grid.Column="1"
                 Width="40"
+                Height="40"
                 Margin="5,0,0,0"
                 Classes="hoverImagePlus"
                 PointerPressed="AddNewGame" />
@@ -46,6 +47,7 @@
         </Grid>
         <ListBox
             Grid.Row="1"
+            Margin="0,10,0,0"
             DoubleTapped="GameDoubleTapped"
             ItemsSource="{Binding FilteredGames}"
             ScrollViewer.VerticalScrollBarVisibility="Auto"
